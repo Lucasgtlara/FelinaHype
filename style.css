@@ -1,9 +1,9 @@
 /* ============================================================
-   ESTILO GLOBAL E VARIÁVEIS
+   1. VARIÁVEIS E GLOBAL
    ============================================================ */
 :root {
-    --primary-purple: #9b51e0; /* Roxo dos detalhes e preços */
-    --bg-dark: #1a1a1a;        /* Fundo do header */
+    --primary-purple: #9b51e0; 
+    --bg-dark: #1a1a1a;        
     --text-gray: #666;
     --border-color: #eee;
 }
@@ -17,9 +17,12 @@
 
 body {
     background-color: #fff;
+    overflow-x: hidden; /* Evita barra de rolagem lateral no mobile */
 }
 
-/* 1. BARRA DE AVISO */
+/* ============================================================
+   2. HEADER E ILUMINAÇÃO
+   ============================================================ */
 .top-bar {
     background-color: var(--primary-purple);
     color: white;
@@ -30,9 +33,9 @@ body {
     letter-spacing: 1px;
 }
 
-/* 2. HEADER E BUSCA */
 .main-header {
-    background-color: var(--bg-dark);
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    border-bottom: 1px solid #333;
     padding: 15px 5%;
 }
 
@@ -44,18 +47,46 @@ body {
     margin: 0 auto;
 }
 
-.logo img {
-    height: 60px; /* Ajuste para sua logo.jpeg */
+/* Logo com Aura de Luz */
+.logo-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
+.logo-glow {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(155, 81, 224, 0.3);
+    filter: blur(25px);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.brand-logo {
+    height: 110px; 
+    width: auto;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+    transform: scale(1.05);
+}
+
+/* Busca e Ícones */
 .search-box {
     display: flex;
-    flex: 0 1 500px;
+    flex: 0 1 450px;
+    height: 40px;
 }
 
 .search-box input {
     width: 100%;
-    padding: 10px 15px;
+    padding: 0 15px;
     border: none;
     border-radius: 4px 0 0 4px;
 }
@@ -63,228 +94,14 @@ body {
 .search-box button {
     background: #fff;
     border: none;
-    padding: 10px 15px;
+    padding: 0 15px;
     border-radius: 0 4px 4px 0;
     cursor: pointer;
 }
 
-.user-actions {
-    display: flex;
-    gap: 20px;
-}
-
-.user-actions i {
-    color: var(--primary-purple);
-    font-size: 20px;
-    cursor: pointer;
-}
-
-/* 3. MENU DE CATEGORIAS */
-.category-nav {
-    background-color: #333;
-}
-
-.category-nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 12px 0;
-}
-
-.category-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: bold;
-    padding: 0 15px;
-}
-
-/* 4. LAYOUT PRINCIPAL (LADO A LADO) */
-.content {
-    display: flex;
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-    gap: 40px;
-}
-
-/* Sidebar */
-.sidebar-menu {
-    flex: 0 0 250px;
-}
-
-.sidebar-menu h3 {
-    font-size: 1.1rem;
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-}
-
-.sidebar-menu ul {
-    list-style: none;
-}
-
-.sidebar-menu li {
-    padding: 10px 0;
-    color: var(--text-gray);
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.sidebar-menu li.active {
-    color: var(--primary-purple);
-    font-weight: bold;
-}
-
-/* 5. ÁREA DE PRODUTOS */
-.products-display {
-    flex: 1;
-}
-
-.breadcrumb {
-    font-size: 12px;
-    color: #999;
-    margin-bottom: 20px;
-}
-
-.category-title {
-    font-size: 24px;
-    margin-bottom: 30px;
-}
-
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsivo */
-    gap: 25px;
-}
-
-/* Card de Produto */
-.product-card {
-    text-align: center;
-    background: #fff;
-    padding: 10px;
-    transition: 0.3s;
-}
-
-.product-img img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 15px;
-}
-
-.product-info h3 {
-    font-size: 14px;
-    color: #444;
-    min-height: 40px;
-    margin-bottom: 10px;
-    line-height: 1.3;
-}
-
-.price {
-    color: var(--primary-purple); /* Cor idêntica ao print */
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.installments {
-    font-size: 11px;
-    color: #777;
-    margin-bottom: 15px;
-}
-
-.btn-buy {
-    width: 100%;
-    background: transparent;
-    border: 1px solid #000;
-    padding: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-buy:hover {
-    background: #000;
-    color: #fff;
-}
-
-/* 6. WHATSAPP FLUTUANTE */
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #25d366;
-    color: white;
-    width: 55px;
-    height: 55px;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    z-index: 1000;
-}
-
-/* RESPONSIVIDADE PARA CELULAR */
-@media (max-width: 768px) {
-    .content {
-        flex-direction: column;
-    }
-    .sidebar-menu {
-        display: none; /* Esconde menu lateral no mobile para dar foco aos produtos */
-    }
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 colunas no celular */
-    }
-}
-/* Efeito de luz na Logo */
-.logo-area {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-}
-
-.logo-glow {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: rgba(155, 81, 224, 0.3); /* Brilho roxo suave */
-    filter: blur(20px);
-    border-radius: 50%;
-    z-index: 1;
-}
-
-.brand-logo {
-    height: 110px; /* Aumentei de 75px para 110px */
-    width: auto;   /* Mantém a proporção da imagem */
-    position: relative;
-    z-index: 2;
-    border-radius: 8px;
-    transition: transform 0.3s ease; /* Efeito suave ao passar o mouse */
-}
-
-.brand-logo:hover {
-    transform: scale(1.05); /* Dá um leve zoom ao passar o mouse */
-}
-
-/* Header com degradê sutil */
-.main-header {
-    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
-    border-bottom: 1px solid #333;
-    padding: 10px 5%;
-}
-
-/* Estilo dos Ícones com Legenda */
 .header-icons {
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .icon-group {
@@ -297,71 +114,179 @@ body {
 }
 
 .icon-group i {
-    color: #9b51e0; /* Roxo vibrante */
-    font-size: 20px;
+    color: var(--primary-purple);
+    font-size: 18px;
     margin-bottom: 4px;
 }
 
 .icon-group span {
-    font-size: 10px;
+    font-size: 9px;
     text-transform: uppercase;
-    letter-spacing: 1px;
     color: #888;
 }
 
-.icon-group:hover i {
-    color: #fff;
-    text-shadow: 0 0 10px #9b51e0;
-}
-
-/* Ajuste na Barra de Categorias */
+/* ============================================================
+   3. NAVEGAÇÃO E LAYOUT
+   ============================================================ */
 .category-nav {
     background-color: #000;
-    border-bottom: 1px solid #9b51e0; /* Linha roxa fina para separar */
+    border-bottom: 1px solid var(--primary-purple);
+}
+
+.category-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 12px 0;
 }
 
 .category-nav a {
-    letter-spacing: 2px;
+    color: white;
+    text-decoration: none;
     font-size: 12px;
-    transition: 0.3s;
+    font-weight: bold;
+    padding: 0 15px;
+    letter-spacing: 1px;
 }
 
-.category-nav a:hover {
-    color: #9b51e0;
+.content {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    gap: 40px;
 }
-/* Container da imagem para garantir que o zoom não saia do box */
-.product-img {
-    overflow: hidden; /* Corta o excesso da imagem quando ela aumenta */
-    border-radius: 8px;
-    background-color: #fff;
+
+.sidebar-menu {
+    flex: 0 0 230px;
+}
+
+.sidebar-menu h3 {
+    font-size: 1.1rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
     margin-bottom: 15px;
-    position: relative;
+}
+
+.sidebar-menu li {
+    list-style: none;
+    padding: 8px 0;
+    color: var(--text-gray);
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.sidebar-menu li.active {
+    color: var(--primary-purple);
+    font-weight: bold;
+}
+
+/* ============================================================
+   4. GRID E EFEITOS NOS PRODUTOS
+   ============================================================ */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-img {
+    overflow: hidden; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-img img {
+    max-width: 100%;
+    transition: transform 0.5s ease, filter 0.3s ease;
+}
+
+/* Hover nos produtos */
+.product-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-5px);
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+.price {
+    color: var(--primary-purple);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-buy {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #000;
+    padding: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* ============================================================
+   5. CORREÇÃO MOBILE
+   ============================================================ */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column !important;
+        gap: 20px !important;
+        padding: 15px 0;
+    }
+
+    .brand-logo {
+        height: 85px !important; /* Logo um pouco menor no mobile */
+    }
+
+    .search-box {
+        width: 90% !important;
+        height: 45px !important;
+    }
+
+    .header-icons {
+        width: 100%;
+        justify-content: center !important;
+        gap: 25px !important;
+    }
+
+    .content {
+        flex-direction: column;
+        margin-top: 15px;
+    }
+
+    .sidebar-menu {
+        display: none; /* Foco total nos produtos no celular */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 colunas como no modelo */
+        gap: 10px;
+    }
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-/* A imagem em si */
-.product-img img {
-    max-width: 100%;
-    height: auto;
-    transition: transform 0.5s ease, filter 0.3s ease; /* Transição suave */
-}
-
-/* Efeito ao passar o mouse no CARD inteiro */
-.product-card:hover .product-img img {
-    transform: scale(1.1); /* Aumenta a imagem em 10% */
-    filter: brightness(1.1); /* Dá um leve ganho de luz na cuia */
-}
-
-/* Sombra suave no box para dar profundidade ao passar o mouse */
-.product-card {
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    padding: 15px;
-    border-radius: 10px;
-}
-
-.product-card:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); /* Sombra leve */
-    transform: translateY(-5px); /* Eleva o box levemente */
+    font-size: 28px;
+    z-index: 1000;
 }
