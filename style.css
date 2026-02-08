@@ -94,21 +94,36 @@ html, body {
 .category-nav ul { display: flex; justify-content: center; list-style: none; padding: 12px 0; }
 .category-nav a { color: white; text-decoration: none; font-size: 12px; font-weight: bold; padding: 0 15px; }
 
-.content { display: flex; max-width: 1200px; margin: 30px auto; padding: 0 20px; gap: 40px; }
-.sidebar-menu { flex: 0 0 230px; }
+/* Content Wrapper */
+.content { 
+    display: flex; 
+    max-width: 1200px; 
+    margin: 30px auto; 
+    padding: 0 20px; 
+    gap: 40px; 
+}
+
+/* Sidebar fixa à esquerda */
+.sidebar-menu { 
+    flex: 0 0 230px; 
+}
+
 .sidebar-menu h3 { border-bottom: 2px solid var(--border-color); padding-bottom: 10px; margin-bottom: 15px; }
 .sidebar-menu li { list-style: none; padding: 8px 0; color: var(--text-gray); font-size: 14px; cursor: pointer; }
 .sidebar-menu li.active { color: var(--primary-purple); font-weight: bold; }
 
-/* ============================================================
-   AJUSTE DE ALINHAMENTO DOS PRODUTOS
-   ============================================================ */
+/* AJUSTE PARA OCUPAR TODO O LIMITE LATERAL */
+.products-display { 
+    flex: 1; /* Força a área de produtos a ocupar todo o resto da tela */
+    min-width: 0; 
+}
+
+/* Grid preenchendo o máximo de boxes possíveis */
 .product-grid {
     display: grid;
-    /* auto-fill preenche a linha com o máximo de boxes que couberem */
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
-    gap: 20px; /* Espaçamento entre os boxes */
-    width: 100%; /* Garante que o grid use todo o espaço disponível */
+    gap: 20px; 
+    width: 100%; 
     padding: 20px 0;
 }
 
@@ -118,11 +133,11 @@ html, body {
     padding: 15px;
     border-radius: 10px;
     transition: 0.3s;
-    /* Garante que o box não cresça além do necessário */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
+
 .product-img { overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
 .product-img img { max-width: 100%; transition: 0.5s; }
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
@@ -132,12 +147,11 @@ html, body {
 .btn-buy { width: 100%; border: 1px solid #000; background: none; padding: 8px; font-weight: bold; cursor: pointer; }
 
 /* ============================================================
-   4. RODAPÉ (FOOTER) - CORREÇÃO
+   4. RODAPÉ (FOOTER)
    ============================================================ */
 .main-footer { background-color: #1a1a1a; color: #fff; margin-top: 50px; }
 .newsletter-bar { background-color: #333; padding: 25px 0; text-align: center; }
 
-/* Alinhamento da Newsletter */
 .newsletter-bar label {
     font-weight: bold;
     font-size: 14px;
@@ -150,7 +164,6 @@ html, body {
 .newsletter-form input { padding: 10px; border: none; width: 250px; border-radius: 4px 0 0 4px; }
 .newsletter-form button { background: #000; color: #fff; border: none; padding: 10px 20px; font-weight: bold; border-radius: 0 4px 4px 0; cursor: pointer; }
 
-/* Organização das Colunas */
 .footer-content { 
     display: flex; 
     justify-content: space-between; 
@@ -166,7 +179,6 @@ html, body {
 .footer-col li { font-size: 12px; color: #aaa; margin-bottom: 8px; cursor: pointer; transition: 0.3s; }
 .footer-col li:hover { color: var(--primary-purple); }
 
-/* Ícones de Pagamento e Social */
 .payment-methods i, .social-icons i { font-size: 28px; margin-right: 10px; color: #aaa; vertical-align: middle; }
 .secure-badge { border: 1px solid #444; padding: 10px; display: inline-flex; align-items: center; gap: 10px; border-radius: 5px; }
 .secure-badge i { color: #2ecc71; font-size: 24px; }
@@ -184,7 +196,6 @@ html, body {
     .sidebar-menu { display: none; }
     .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
     
-    /* Ajustes Rodapé Mobile */
     .footer-content { flex-direction: column; text-align: left; }
     .newsletter-bar label { display: block; margin-bottom: 10px; margin-right: 0; }
     .newsletter-form { flex-direction: column; width: 90%; margin: 0 auto; }
@@ -193,4 +204,3 @@ html, body {
 }
 
 .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; }
-
