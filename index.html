@@ -199,58 +199,65 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 <script>
-/* ===============================
-   UX / INTERAÇÕES
-================================ */
+  (function () {
+    // 1) Calcula alturas para o sticky (top-bar + header)
+    function setStickyHeights() {
+      const topBar = document.querySelector(".top-bar");
+      const header = document.querySelector(".main-header");
 
-// Header sticky com efeito
-const header = document.querySelector('.main-header');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-        header.classList.add('header-sticky');
-    } else {
-        header.classList.remove('header-sticky');
+      const topBarH = topBar ? topBar.offsetHeight : 0;
+      const headerH = header ? header.offsetHeight : 0;
+
+      document.documentElement.style.setProperty("--topbar-h", topBarH + "px");
+      document.documentElement.style.setProperty("--header-h", headerH + "px");
     }
-});
 
-// Carrinho
-let cartCount = 0;
-const cartBadge = document.querySelector('.cart-count');
+    window.addEventListener("load", setStickyHeights);
+    window.addEventListener("resize", setStickyHeights);
 
-document.querySelectorAll('.btn-buy').forEach(btn => {
-    btn.addEventListener('click', () => {
-        cartCount++;
-        cartBadge.textContent = cartCount;
-        btn.classList.add('added');
-        btn.textContent = 'ADICIONADO ✓';
+    // 2) “Arrastar para o lado” no menu com mouse (touch já funciona pelo overflow-x)
+    const navList = document.querySelector(".category-nav ul");
+    if (!navList) return;
 
-        setTimeout(() => {
-            btn.classList.remove('added');
-            btn.textContent = 'COMPRAR';
-        }, 1500);
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    navList.addEventListener("pointerdown", (e) => {
+      isDown = true;
+      navList.classList.add("dragging");
+      navList.setPointerCapture(e.pointerId);
+
+      startX = e.clientX;
+      scrollLeft = navList.scrollLeft;
     });
-});
 
-// Sidebar ativa
-document.querySelectorAll('.sidebar-menu li').forEach(item => {
-    item.addEventListener('click', () => {
-        document.querySelectorAll('.sidebar-menu li')
-            .forEach(li => li.classList.remove('active'));
-        item.classList.add('active');
+    navList.addEventListener("pointermove", (e) => {
+      if (!isDown) return;
+      const walk = (e.clientX - startX);
+      navList.scrollLeft = scrollLeft - walk;
     });
-});
 
-// Animação de entrada dos produtos
-const cards = document.querySelectorAll('.product-card');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.2 });
+    function stopDrag() {
+      isDown = false;
+      navList.classList.remove("dragging");
+    }
 
-cards.forEach(card => observer.observe(card));
+    navList.addEventListener("pointerup", stopDrag);
+    navList.addEventListener("pointercancel", stopDrag);
+    navList.addEventListener("pointerleave", stopDrag);
+
+    // Evita “clicar” sem querer enquanto arrasta
+    let moved = false;
+    navList.addEventListener("pointermove", () => { if (isDown) moved = true; });
+    navList.addEventListener("click", (e) => {
+      if (moved) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      moved = false;
+    }, true);
+  })();
 </script>
 
 </body>
