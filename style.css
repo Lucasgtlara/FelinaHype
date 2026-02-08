@@ -100,8 +100,29 @@ html, body {
 .sidebar-menu li { list-style: none; padding: 8px 0; color: var(--text-gray); font-size: 14px; cursor: pointer; }
 .sidebar-menu li.active { color: var(--primary-purple); font-weight: bold; }
 
-.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; flex: 1; }
-.product-card { text-align: center; padding: 15px; border-radius: 10px; transition: 0.3s; }
+/* ============================================================
+   AJUSTE DE ALINHAMENTO DOS PRODUTOS
+   ============================================================ */
+.product-grid {
+    display: grid;
+    /* auto-fill preenche a linha com o máximo de boxes que couberem */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 20px; /* Espaçamento entre os boxes */
+    width: 100%; /* Garante que o grid use todo o espaço disponível */
+    padding: 20px 0;
+}
+
+.product-card {
+    text-align: center;
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    transition: 0.3s;
+    /* Garante que o box não cresça além do necessário */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .product-img { overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
 .product-img img { max-width: 100%; transition: 0.5s; }
 .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
@@ -172,3 +193,4 @@ html, body {
 }
 
 .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; }
+
