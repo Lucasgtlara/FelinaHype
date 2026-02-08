@@ -79,14 +79,28 @@ html, body {
     transition: transform 0.3s ease;
 }
 
+/* ESTILO NEON PARA O NOME */
 .logo-text {
+    font-family: 'Permanent Marker', cursive; /* Estilo Street/Hype */
     color: white;
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 32px;
     text-transform: uppercase;
     letter-spacing: 2px;
     z-index: 2;
-    text-shadow: 0 0 10px rgba(155, 81, 224, 0.5);
+    /* Efeito Neon Vibrante */
+    text-shadow: 
+        0 0 5px #fff,
+        0 0 10px #fff,
+        0 0 20px var(--primary-purple),
+        0 0 30px var(--primary-purple),
+        0 0 40px var(--primary-purple);
+    animation: pulse-glow 2s infinite alternate;
+}
+
+/* Animação para o brilho pulsar */
+@keyframes pulse-glow {
+    from { text-shadow: 0 0 10px #fff, 0 0 20px var(--primary-purple), 0 0 30px var(--primary-purple); }
+    to { text-shadow: 0 0 15px #fff, 0 0 30px var(--primary-purple), 0 0 45px var(--primary-purple), 0 0 60px var(--primary-purple); }
 }
 
 .brand-logo:hover { transform: scale(1.05); }
@@ -206,7 +220,7 @@ html, body {
     }
 
     .brand-logo { height: 80px !important; }
-    .logo-text { font-size: 18px; } /* Texto menor no mobile */
+    .logo-text { font-size: 18px; letter-spacing: 1px; } /* Ajuste Neon Mobile */
     .content { flex-direction: column; }
     .sidebar-menu { display: none; }
     .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
