@@ -57,6 +57,7 @@ html, body {
     align-items: center;
     justify-content: center;
     padding: 10px;
+    gap: 15px; /* Espaço entre imagem e texto */
 }
 
 .logo-glow {
@@ -76,6 +77,16 @@ html, body {
     z-index: 2;
     border-radius: 8px;
     transition: transform 0.3s ease;
+}
+
+.logo-text {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 2;
+    text-shadow: 0 0 10px rgba(155, 81, 224, 0.5);
 }
 
 .brand-logo:hover { transform: scale(1.05); }
@@ -195,6 +206,7 @@ html, body {
     }
 
     .brand-logo { height: 80px !important; }
+    .logo-text { font-size: 18px; } /* Texto menor no mobile */
     .content { flex-direction: column; }
     .sidebar-menu { display: none; }
     .product-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
