@@ -272,4 +272,49 @@ html, body {
         border-radius: 12px;
     }
 }
+/* ============================================================
+   6. MENU HORIZONTAL ARRASTÁVEL (CATEGORY NAV)
+   ============================================================ */
+
+/* garante que o topo fique acima do conteúdo */
+.top-bar { position: sticky; top: 0; z-index: 3000; }
+
+/* header e menu vão "colar" também (top calculado via JS) */
+.main-header { position: sticky; top: var(--topbar-h, 0px); z-index: 2500; }
+.category-nav { position: sticky; top: calc(var(--topbar-h, 0px) + var(--header-h, 0px)); z-index: 2400; }
+
+/* deixa o menu com rolagem lateral */
+.category-nav ul {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  gap: 10px;                 /* melhora o espaçamento em telas menores */
+  padding: 12px 12px;        /* dá espaço para “pegar” e arrastar */
+  cursor: grab;
+  user-select: none;
+  justify-content: flex-start; /* em vez de centralizar, permite rolar melhor */
+}
+
+/* esconde scrollbar (sem quebrar a rolagem) */
+.category-nav ul::-webkit-scrollbar { height: 0; }
+.category-nav ul { scrollbar-width: none; }
+
+/* cada item em linha */
+.category-nav li {
+  flex: 0 0 auto;
+  display: inline-flex;
+}
+
+/* feedback visual quando estiver arrastando */
+.category-nav ul.dragging {
+  cursor: grabbing;
+}
+
+/* (opcional) melhora o “alvo” do toque no mobile */
+.category-nav a {
+  display: inline-block;
+  padding: 8px 12px;
+}
+
 
