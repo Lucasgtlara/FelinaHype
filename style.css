@@ -1,49 +1,287 @@
 /* ============================================================
-   CORREÇÃO PARA O BOX DE PESQUISA NO MOBILE
+   1. VARIÁVEIS E RESET GLOBAL
+   ============================================================ */
+:root {
+    --primary-purple: #9b51e0; 
+    --bg-dark: #1a1a1a;        
+    --text-gray: #666;
+    --border-color: #eee;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* CORREÇÃO DO ESPAÇO NA DIREITA: Trava o transbordamento */
+html, body {
+    overflow-x: hidden !important;
+    width: 100%;
+    position: relative;
+    background-color: #fff;
+}
+
+/* ============================================================
+   2. HEADER E ILUMINAÇÃO (DESKTOP)
+   ============================================================ */
+.top-bar {
+    background-color: var(--primary-purple);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.main-header {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    border-bottom: 1px solid #333;
+    padding: 15px 5%;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-area {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-glow {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(155, 81, 224, 0.3);
+    filter: blur(25px);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.brand-logo {
+    height: 110px; 
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.search-box {
+    display: flex;
+    flex: 0 1 450px;
+    height: 40px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0 15px;
+    border: none;
+    outline: none;
+}
+
+.search-box button {
+    background: #fff;
+    border: none;
+    padding: 0 15px;
+    cursor: pointer;
+}
+
+.header-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.icon-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-size: 9px;
+    text-transform: uppercase;
+}
+
+.icon-group i {
+    color: var(--primary-purple);
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+/* ============================================================
+   3. NAVEGAÇÃO E LAYOUT
+   ============================================================ */
+.category-nav {
+    background-color: #000;
+    border-bottom: 1px solid var(--primary-purple);
+}
+
+.category-nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 12px 0;
+}
+
+.category-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0 15px;
+}
+
+.content {
+    display: flex;
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+.sidebar-menu {
+    flex: 0 0 230px;
+}
+
+.sidebar-menu h3 {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.sidebar-menu li {
+    list-style: none;
+    padding: 8px 0;
+    color: var(--text-gray);
+    font-size: 14px;
+}
+
+.sidebar-menu li.active {
+    color: var(--primary-purple);
+    font-weight: bold;
+}
+
+/* ============================================================
+   4. PRODUTOS E ZOOM
+   ============================================================ */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    text-align: center;
+    padding: 15px;
+    transition: 0.3s;
+}
+
+.product-img {
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-img img {
+    max-width: 100%;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.product-card:hover .product-img img {
+    transform: scale(1.1);
+}
+
+.price {
+    color: var(--primary-purple);
+    font-size: 20px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.btn-buy {
+    width: 100%;
+    border: 1px solid #000;
+    background: none;
+    padding: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ============================================================
+   5. CORREÇÃO MOBILE DEFINITIVA
    ============================================================ */
 @media (max-width: 768px) {
     
-    /* Garante que o corpo do site não crie barra de rolagem lateral */
-    html, body {
-        overflow-x: hidden;
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-
-    /* Ajusta o cabeçalho para não ficar com altura excessiva */
     .header-container {
         flex-direction: column !important;
-        padding: 10px !important;
-        height: auto !important; /* Remove qualquer altura fixa */
         gap: 15px !important;
+        padding: 10px 0 !important;
+        height: auto !important;
     }
 
-    /* DIMINUI O BOX DE PESQUISA */
+    .brand-logo {
+        height: 80px !important; /* Diminui a logo no mobile */
+    }
+
+    /* FORÇA O BOX DE BUSCA A FICAR PEQUENO */
     .search-box {
-        width: 85% !important; /* Reduz a largura para não bater nas bordas */
-        height: 40px !important; /* Define uma altura fixa menor */
-        margin: 0 auto !important; /* Centraliza o box */
+        width: 85% !important; /* Evita o espaço na direita */
+        height: 40px !important;
+        max-height: 40px !important; /* Mata o box gigante do print */
+        margin: 0 auto !important;
         flex: none !important;
-        display: flex !important;
     }
 
-    .search-box input {
-        padding: 8px 12px !important;
-        font-size: 14px !important;
-    }
-
-    /* Mantém os ícones organizados abaixo da busca */
+    /* Puxa os ícones para cima e alinha em linha */
     .header-icons {
+        width: 100% !important;
         display: flex !important;
         flex-direction: row !important;
-        justify-content: space-around !important;
-        width: 100% !important;
-        padding-top: 10px !important;
+        justify-content: space-evenly !important;
+        margin-top: 5px !important;
     }
 
-    /* Esconde elementos que podem empurrar a tela para o lado */
-    .sidebar-menu {
-        display: none !important;
+    .content {
+        flex-direction: column;
+        padding: 0 10px !important;
     }
+
+    .sidebar-menu {
+        display: none; /* Esconde menu lateral no mobile */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2 colunas como no modelo */
+        gap: 10px;
+    }
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #25d366;
+    color: #fff;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    z-index: 1000;
 }
