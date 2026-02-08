@@ -204,3 +204,72 @@ html, body {
 }
 
 .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; color: #fff; width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 28px; z-index: 1000; }
+/* ===============================
+   MELHORIAS DE UX / UI
+================================ */
+
+/* Header fixo */
+.header-sticky {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+/* Produtos clicáveis mais óbvios */
+.product-card {
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.product-card.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 0.6s ease;
+}
+
+.product-card:hover {
+    border: 1px solid var(--primary-purple);
+}
+
+/* Botão comprar */
+.btn-buy {
+    transition: 0.3s;
+}
+
+.btn-buy:hover {
+    background: var(--primary-purple);
+    color: #fff;
+}
+
+.btn-buy.added {
+    background: #2ecc71 !important;
+    color: #fff !important;
+    border-color: #2ecc71 !important;
+}
+
+/* Sidebar */
+.sidebar-menu li:hover {
+    color: var(--primary-purple);
+    padding-left: 5px;
+    transition: 0.3s;
+}
+
+/* Categoria topo */
+.category-nav a:hover {
+    color: var(--primary-purple);
+}
+
+/* Mobile: cards mais confortáveis */
+@media (max-width: 768px) {
+    .product-card {
+        border-radius: 12px;
+    }
+}
+
