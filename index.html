@@ -198,9 +198,64 @@
     <a href="https://wa.me/5561981982209" class="whatsapp-float" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
+<script>
+/* ===============================
+   UX / INTERAÇÕES
+================================ */
+
+// Header sticky com efeito
+const header = document.querySelector('.main-header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+        header.classList.add('header-sticky');
+    } else {
+        header.classList.remove('header-sticky');
+    }
+});
+
+// Carrinho
+let cartCount = 0;
+const cartBadge = document.querySelector('.cart-count');
+
+document.querySelectorAll('.btn-buy').forEach(btn => {
+    btn.addEventListener('click', () => {
+        cartCount++;
+        cartBadge.textContent = cartCount;
+        btn.classList.add('added');
+        btn.textContent = 'ADICIONADO ✓';
+
+        setTimeout(() => {
+            btn.classList.remove('added');
+            btn.textContent = 'COMPRAR';
+        }, 1500);
+    });
+});
+
+// Sidebar ativa
+document.querySelectorAll('.sidebar-menu li').forEach(item => {
+    item.addEventListener('click', () => {
+        document.querySelectorAll('.sidebar-menu li')
+            .forEach(li => li.classList.remove('active'));
+        item.classList.add('active');
+    });
+});
+
+// Animação de entrada dos produtos
+const cards = document.querySelectorAll('.product-card');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
+
+cards.forEach(card => observer.observe(card));
+</script>
 
 </body>
 </html>
+
 
 
 
